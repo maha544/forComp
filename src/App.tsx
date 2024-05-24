@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ForInput from './components/ForInput';
+import ForButton from './components/ForButton';
+import ForTable from './components/ForTable';
 
 function App() {
-  return (
+  const forRes = ()=>{
+    alert("thank you for writing a quote..");
+  };
+  const data = [
+    { id: 1, name: 'John', age: 25 },
+    { id: 2, name: 'Jane', age: 30 },
+    { id: 3, name: 'Doe', age: 35 },
+  ];
+
+  const columns = [
+    { header: 'ID', accessor: 'id' },
+    { header: 'Name', accessor: 'name' },
+    { header: 'Age', accessor: 'age' },
+  ];
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="m-5">
+      <ForInput 
+      placeholder='Write your fav quote..'
+      onChange={(e : any)=>{
+        console.log(e.target.value)
+      }}/>
+      <ForButton 
+      value = "Enter"
+      onClick= {forRes}/>
+      </div>
+      <div className='container'>
+      <h5>My Table</h5>
+      <ForTable data={data} columns={columns} />
+      </div>
     </div>
   );
 }
